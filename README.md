@@ -3,6 +3,8 @@
 My first Ansible playbooks, tested locally on VirtualBox
 (1 control VM + 2 Ubuntu Server targets).
 
+Lab only, not production.
+
 - `inventory.ini`: the 2 targets, group `lab`
 - `01_utilisateur.yml`: creates the adminlab user and deploys its SSH key on the target servers
 - `02_update.yml`: package updates on the target servers (`upgrade: safe`, to avoid breaking dependencies)
