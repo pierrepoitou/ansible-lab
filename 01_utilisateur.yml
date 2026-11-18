@@ -1,0 +1,19 @@
+---
+- name: Création de l'utilisateur d'administration
+  hosts: lab
+  become: true
+  vars:
+    admin_user: adminlab
+    admin_pubkey: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+  tasks:
+    - name: Créer l'utilisateur avec accès sudo
+      ansible.builtin.user:
+        name: "{{ admin_user }}"
+        groups: sudo
+        append: true
+        shell: /bin/bash
+
+    - name: Déposer la clé SSH publique
+      ansible.posix.authorized_key:
+        user: "{{ admin_user }}"
+        key: "{{ admin_pubkey }}"
